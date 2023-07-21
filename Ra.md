@@ -1,6 +1,7 @@
 10.10.93.135:RA:Windows:
 
 nmap::
+```
 53/tcp   open  domain              Simple DNS Plus
 80/tcp   open  http                Microsoft IIS httpd 10.0
 |_http-server-header: Microsoft-IIS/10.0
@@ -250,10 +251,11 @@ Host script results:
 -sU:
 123/udp open  ntp
 389/udp open  lda
+```
 
 Exploiting LDAP Server NULL Bind – n00py Blog
 [](https://github.com/0x90eax/THM/assets/137312046/87a0ea46-6c08-42b3-b287-6a310aa9dbf7)
-
+```
 200      GET        5l       53w     1890c http://10.10.93.135/css/landing-page.min.css
 200      GET       11l       68w     3738c http://10.10.93.135/img/button-openfire-88x30.gif
 200      GET      778l     1216w    12958c http://10.10.93.135/vendor/simple-line-icons/css/simple-line-icons.css
@@ -267,7 +269,7 @@ Exploiting LDAP Server NULL Bind – n00py Blog
 200      GET        0l        0w   136643c http://10.10.93.135/img/Emilieje.jpg
 200      GET        0l        0w   314857c http://10.10.93.135/img/bg-showcase-3.jpg
 200      GET        0l        0w   181211c http://10.10.93.135/img/lilyleAndSparky.jpg
-
+```
 
 http://10.10.93.135:7070/
   openfire http binding service
@@ -275,13 +277,9 @@ http://10.10.93.135:7070/
 http://10.10.93.135:9090/login.jsp?url=%2Findex.jsp
   amdin login page
 
-
+python3
+```
 >>> import ldap3
->>> server = ldap3.Server('10.10.93.135', get_info = ldap3.ALL port=3268)
-  File "<stdin>", line 1
-    server = ldap3.Server('10.10.93.135', get_info = ldap3.ALL port=3268)
-                                                     ^^^^^^^^^^^^^^
-SyntaxError: invalid syntax. Perhaps you forgot a comma?
 >>> server = ldap3.Server('10.10.93.135', get_info = ldap3.ALL, port=3268)
 >>> connection = ldap3.Connection(server)
 >>> connection.bind()
@@ -405,6 +403,8 @@ Other:
     20230718033655.0Z
   configurationNamingContext: 
     CN=Configuration,DC=windcorp,DC=thm
+```
+
 
 
 
